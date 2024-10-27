@@ -1,0 +1,45 @@
+{
+  "name": "refire-client",
+  "version": "0.0.3",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "refire",
+    "email",
+    "api",
+    "client",
+    "transactional-email",
+    "send-email",
+    "email-sending",
+    "developer-tools",
+    "programmatic-email",
+    "email-api",
+    "send-email-api",
+    "smtp",
+    "notifications",
+    "email-templates",
+    "integration",
+    "webhooks",
+    "javascript",
+    "typescript",
+    "nodejs",
+    "backend",
+    "saas",
+    "cloud-email",
+    "email-service"
+  ],
+  "files": [
+    "dist/index.js"
+  ],
+  "author": "refire.email",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
