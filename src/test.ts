@@ -2,7 +2,7 @@
 // import Refire from "./index";
 
 // // Scenario 1
-// const refire = new Refire("ef5068e4-7f9d-4db0-bbcc-b8ae1d97c8ec");
+// const refire = new Refire(<api_key>);
 // refire.sendEmail({
 //   subject: "Hello",
 //   to: "example@example.com",
@@ -12,7 +12,7 @@
 
 // // Scenario 2
 // refire.sendEmailFromTemplate({
-//   templateId: "23789df4-723c-43db-9547-6bcaa684055f",
+//   templateId: "<template_id>",
 //   data: {
 //     subject: "Subject from Template",
 //     name: "Jane Doe",
@@ -22,7 +22,7 @@
 // });
 
 // // Scenario 3
-// new Refire("ef5068e4-7f9d-4db0-bbcc-b8ae1d97c8ec").sendEmail({
+// new Refire(<api_key>).sendEmail({
 //   subject: "Hello",
 //   to: "example@example.com",
 //   name: "John Doe",
@@ -30,8 +30,8 @@
 // });
 
 // // Scenario 4
-// new Refire("ef5068e4-7f9d-4db0-bbcc-b8ae1d97c8ec").sendEmailFromTemplate({
-//   templateId: "23789df4-723c-43db-9547-6bcaa684055f",
+// new Refire(<api_key>).sendEmailFromTemplate({
+//   templateId: "<template_id>",
 //   data: {
 //     subject: "Subject from Template",
 //     name: "Jane Doe",
