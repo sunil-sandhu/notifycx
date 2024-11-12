@@ -1,41 +1,32 @@
 // // src/test.ts
-// import Refire from "./index";
+import Refire from "./index";
 
-// // Scenario 1
-// const refire = new Refire(<api_key>);
-// refire.sendEmail({
-//   subject: "Hello",
-//   to: "example@example.com",
-//   name: "John Doe",
-//   message: "Testing send email.",
-// });
+const refire = new Refire("<api_key>");
 
-// // Scenario 2
-// refire.sendEmailFromTemplate({
-//   templateId: "<template_id>",
-//   data: {
-//     subject: "Subject from Template",
-//     name: "Jane Doe",
-//     message: "This is a message from the template.",
-//     to: "jane@example.com",
-//   },
-// });
+// Test 1: Basic email
+refire.sendEmail({
+  to: "example@example.com",
+  subject: "Hello",
+  name: "John Doe",
+  message: "Testing send email.",
+});
 
-// // Scenario 3
-// new Refire(<api_key>).sendEmail({
-//   subject: "Hello",
-//   to: "example@example.com",
-//   name: "John Doe",
-//   message: "Testing send email.",
-// });
+// // Test 2: Email using template
+refire.sendEmailFromTemplate({
+  to: "jane@example.com",
+  templateId: "<template_id>",
+});
 
-// // Scenario 4
-// new Refire(<api_key>).sendEmailFromTemplate({
-//   templateId: "<template_id>",
-//   data: {
-//     subject: "Subject from Template",
-//     name: "Jane Doe",
-//     message: "This is a message from the template.",
-//     to: "jane@example.com",
-//   },
-// });
+// // Test 3: Chained basic email
+new Refire("<api_key>").sendEmail({
+  to: "example@example.com",
+  subject: "Hello",
+  name: "John Doe",
+  message: "Testing send email.",
+});
+
+// // Test 4: Chained template email
+new Refire("<api_key>").sendEmailFromTemplate({
+  to: "jane@example.com",
+  templateId: "<template_id>",
+});

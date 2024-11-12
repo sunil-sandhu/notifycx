@@ -9,19 +9,14 @@ interface SendEmailParams {
 
 interface SendEmailFromTemplateParams {
   templateId: string;
-  data: {
-    subject: string;
-    name: string;
-    message: string;
-    to: string;
-  };
+  to: string;
 }
 
 class Refire {
   private apiKey: string;
   private apiUrl: string;
 
-  constructor(apiKey: string, apiUrl = "https://refire.email/api") {
+  constructor(apiKey: string, apiUrl = "http://refire.email/api") {
     this.apiKey = apiKey; // Now required
     this.apiUrl = apiUrl;
   }
@@ -31,12 +26,12 @@ class Refire {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-api-key": this.apiKey,
       },
-      body: JSON.stringify({
-        apiKey: this.apiKey,
-        data: params,
-      }),
+      body: JSON.stringify(params),
     });
+
+    console.log(response.headers);
 
     if (!response.ok) {
       throw new Error(`Failed to send email: ${response.statusText}`);
@@ -51,11 +46,11 @@ class Refire {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-api-key": this.apiKey,
       },
       body: JSON.stringify({
-        apiKey: this.apiKey,
         templateId: params.templateId,
-        data: params.data,
+        to: params.to,
       }),
     });
 
