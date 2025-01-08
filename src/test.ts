@@ -4,7 +4,7 @@ import Refire from "./index";
 const refire = new Refire("<api_key>");
 
 // Test 1: Basic email
-refire.sendEmail({
+refire.sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -12,13 +12,13 @@ refire.sendEmail({
 });
 
 // // Test 2: Email using template
-refire.sendEmailFromTemplate({
+refire.sendTestEmailFromTemplate({
   to: "jane@example.com",
   templateId: "<template_id>",
 });
 
 // // Test 3: Chained basic email
-new Refire("<api_key>").sendEmail({
+new Refire("<api_key>").sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -26,7 +26,7 @@ new Refire("<api_key>").sendEmail({
 });
 
 // // Test 4: Chained template email
-new Refire("<api_key>").sendEmailFromTemplate({
+new Refire("<api_key>").sendTestEmailFromTemplate({
   to: "jane@example.com",
   templateId: "<template_id>",
 });

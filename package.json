@@ -1,8 +1,9 @@
 {
   "name": "refire-client",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.4",
+  "description": "Refire Email API Client",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "ts-node src/test.ts",
     "build": "tsc"
@@ -33,7 +34,8 @@
     "email-service"
   ],
   "files": [
-    "dist/index.js"
+    "dist/index.js",
+    "dist/index.d.ts"
   ],
   "author": "refire.email",
   "license": "MIT",
