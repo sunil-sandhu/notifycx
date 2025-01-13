@@ -1,7 +1,7 @@
 {
-  "name": "refire-client",
+  "name": "notifycx",
   "version": "0.1.4",
-  "description": "Refire Email API Client",
+  "description": "NotifyCX API Client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "keywords": [
-    "refire",
+    "notifycx",
     "email",
     "api",
     "client",
@@ -37,7 +37,7 @@
     "dist/index.js",
     "dist/index.d.ts"
   ],
-  "author": "refire.email",
+  "author": "notify.cx",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.8.1",

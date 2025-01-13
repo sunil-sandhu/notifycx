@@ -12,11 +12,11 @@ interface SendEmailFromTemplateParams {
   to: string;
 }
 
-class Refire {
+class NotifyCX {
   public readonly apiKey: string;
   public readonly apiUrl: string;
 
-  constructor(apiKey: string, apiUrl = "https://refire.email/api") {
+  constructor(apiKey: string, apiUrl = "https://notify.cx/api") {
     if (!apiKey) {
       throw new Error("API key is required");
     }
@@ -116,4 +116,4 @@ class Refire {
   }
 }
 
-export default Refire;
+export default NotifyCX;

@@ -1,10 +1,10 @@
 // // src/test.ts
-import Refire from "./index";
+import NotifyCX from "./index";
 
-const refire = new Refire("<api_key>");
+const notifycx = new NotifyCX("<api_key>");
 
 // Test 1: Basic email
-refire.sendTestEmail({
+notifycx.sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -12,13 +12,13 @@ refire.sendTestEmail({
 });
 
 // // Test 2: Email using template
-refire.sendTestEmailFromTemplate({
+notifycx.sendTestEmailFromTemplate({
   to: "jane@example.com",
   templateId: "<template_id>",
 });
 
 // // Test 3: Chained basic email
-new Refire("<api_key>").sendTestEmail({
+new NotifyCX("<api_key>").sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -26,7 +26,7 @@ new Refire("<api_key>").sendTestEmail({
 });
 
 // // Test 4: Chained template email
-new Refire("<api_key>").sendTestEmailFromTemplate({
+new NotifyCX("<api_key>").sendTestEmailFromTemplate({
   to: "jane@example.com",
   templateId: "<template_id>",
 });
