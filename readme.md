@@ -2,17 +2,6 @@
 
 A lightweight TypeScript client for sending transactional emails through the NotifyCX Email API.
 
-## Getting Your API Key
-
-Before using the client, you'll need an API key:
-
-1. Create a company account in the [NotifyCX](https://notify.cx) dashboard
-2. Navigate to your company view page
-3. Find your API key in a secure, masked input field
-4. Click the field to copy your API key to clipboard
-
-Keep your API key secure and never share it publicly or commit it to version control.
-
 ## Installation
 
 ```bash
@@ -31,14 +20,25 @@ const notifycx = new NotifyCX({
 });
 ```
 
-You can optionally specify a custom API URL during initialization:
+<!-- You can optionally specify a custom API URL during initialization:
 
 ```typescript
 const notifycx = new NotifyCX({
   apiKey: "your-api-key",
   apiUrl: "https://api.notify.cx/v1",
 });
-```
+``` -->
+
+## Getting Your API Key
+
+Before using the client, you'll need an API key:
+
+1. Create an account on [NotifyCX](https://notify.cx).
+2. Navigate to your credentials page
+3. Find your API key in a secure, masked input field
+4. Click the field to copy your API key to clipboard
+
+Keep your API key secure and never share it publicly or commit it to version control.
 
 ## Sending Basic Emails
 
