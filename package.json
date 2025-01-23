@@ -1,6 +1,6 @@
 {
   "name": "notifycx",
-  "version": "0.1.4",
+  "version": "0.1.10",
   "description": "NotifyCX API Client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

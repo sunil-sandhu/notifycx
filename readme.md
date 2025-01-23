@@ -13,21 +13,16 @@ npm install notifycx
 Initialize the Client
 
 ```typescript
-import { NotifyCX } from "notifycx";
+import Notify from "notifycx";
 
-const notifycx = new NotifyCX({
-  apiKey: "your-api-key",
-});
+const notify = new Notify("your-api-key");
 ```
 
-<!-- You can optionally specify a custom API URL during initialization:
+You can optionally specify a custom API URL during initialization:
 
 ```typescript
-const notifycx = new NotifyCX({
-  apiKey: "your-api-key",
-  apiUrl: "https://api.notify.cx/v1",
-});
-``` -->
+const notify = new Notify("your-api-key", "https://api.notify.cx/v1");
+```
 
 ## Getting Your API Key
 
@@ -45,7 +40,7 @@ Keep your API key secure and never share it publicly or commit it to version con
 To send a basic email without a template:
 
 ```typescript
-notifycx.sendEmail({
+notify.sendEmail({
   to: "recipient@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -58,9 +53,14 @@ notifycx.sendEmail({
 To send an email using a pre-defined template:
 
 ```typescript
-notifycx.sendEmailFromTemplate({
+notify.sendEmailFromTemplate({
   to: "recipient@example.com",
+  from: "noreply@notify.cx",
   templateId: "<your_template_id>",
+  variables: {
+    name: "John Doe",
+    company: "Example Inc.",
+  },
 });
 ```
 
@@ -71,7 +71,7 @@ You can also use method chaining if preferred:
 Sending a basic email:
 
 ```typescript
-new NotifyCX("<your_api_key>").sendEmail({
+new Notify("<your_api_key>").sendEmail({
   to: "recipient@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -82,9 +82,14 @@ new NotifyCX("<your_api_key>").sendEmail({
 Sending a template-based email:
 
 ```typescript
-new NotifyCX("<your_api_key>").sendEmailFromTemplate({
+new Notify("<your_api_key>").sendEmailFromTemplate({
   to: "recipient@example.com",
+  from: "noreply@notify.cx",
   templateId: "<your_template_id>",
+  variables: {
+    name: "John Doe",
+    company: "Example Inc.",
+  },
 });
 ```
 
@@ -104,7 +109,9 @@ Parameters for sending a basic email:
 Parameters for sending a template-based email:
 
 - `to` (string): Recipient email address
+- `from` (string): Sender email address (optional)
 - `templateId` (string): ID of the template to use
+- `variables` (object): Variables to use in the template (optional)
 
 ### SendTestEmailParams
 
@@ -120,7 +127,9 @@ Parameters for sending a basic test email:
 Parameters for sending a template-based testemail:
 
 - `to` (string): Recipient email address
+- `from` (string): Sender email address (optional)
 - `templateId` (string): ID of the template to use
+- `variables` (object): Variables to use in the template (optional)
 
 ## Error Handling
 
@@ -128,7 +137,7 @@ The client includes built-in error handling. Both `sendEmail` and `sendEmailFrom
 
 ```typescript
 try {
-  await notifycx.sendEmail({
+  await notify.sendEmail({
     to: "recipient@example.com",
     subject: "Hello",
     name: "John Doe",
@@ -145,6 +154,6 @@ MIT
 
 ## Author
 
-[NotifyCX](https://notify.cx)
+[Notify](https://notify.cx)
 
 For more information and detailed documentation, visit [notify.cx](https://notify.cx).

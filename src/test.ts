@@ -1,10 +1,10 @@
 // // src/test.ts
-import NotifyCX from "./index";
+import Notify from "./index";
 
-const notifycx = new NotifyCX("<api_key>");
+const notify = new Notify("<api_key>");
 
 // Test 1: Basic email
-notifycx.sendTestEmail({
+notify.sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -12,13 +12,18 @@ notifycx.sendTestEmail({
 });
 
 // // Test 2: Email using template
-notifycx.sendTestEmailFromTemplate({
+notify.sendTestEmailFromTemplate({
   to: "jane@example.com",
+  from: "Notify <noreply@notify.cx>",
   templateId: "<template_id>",
+  variables: {
+    name: "Jane Doe",
+    company: "Example Inc.",
+  },
 });
 
 // // Test 3: Chained basic email
-new NotifyCX("<api_key>").sendTestEmail({
+new Notify("<api_key>").sendTestEmail({
   to: "example@example.com",
   subject: "Hello",
   name: "John Doe",
@@ -26,7 +31,12 @@ new NotifyCX("<api_key>").sendTestEmail({
 });
 
 // // Test 4: Chained template email
-new NotifyCX("<api_key>").sendTestEmailFromTemplate({
+new Notify("<api_key>").sendTestEmailFromTemplate({
   to: "jane@example.com",
+  from: "Notify <noreply@notify.cx>",
   templateId: "<template_id>",
+  variables: {
+    name: "Jane Doe",
+    company: "Example Inc.",
+  },
 });

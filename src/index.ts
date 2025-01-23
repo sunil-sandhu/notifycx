@@ -9,10 +9,12 @@ interface SendEmailParams {
 
 interface SendEmailFromTemplateParams {
   templateId: string;
+  from?: string;
   to: string;
+  variables?: Record<string, string>;
 }
 
-class NotifyCX {
+class Notify {
   public readonly apiKey: string;
   public readonly apiUrl: string;
 
@@ -71,7 +73,9 @@ class NotifyCX {
       },
       body: JSON.stringify({
         templateId: params.templateId,
+        from: params?.from,
         to: params.to,
+        variables: params?.variables,
       }),
     });
 
@@ -99,7 +103,9 @@ class NotifyCX {
         },
         body: JSON.stringify({
           templateId: params.templateId,
+          from: params?.from,
           to: params.to,
+          variables: params?.variables,
         }),
       }
     );
@@ -116,4 +122,4 @@ class NotifyCX {
   }
 }
 
-export default NotifyCX;
+export default Notify;
