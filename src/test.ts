@@ -1,56 +1,64 @@
 // // src/test.ts
 import { Notify } from "./index";
 
-import * as dotenv from "dotenv";
-
-dotenv.config();
-
-if (!process.env.NOTIFY_API_KEY) {
-    throw new Error('NOTIFY_API_KEY is not defined in environment variables');
-}
-if (!process.env.EXAMPLE_TEMPLATE_ID) {
-    throw new Error('EXAMPLE_TEMPLATE_ID is not defined in environment variables');
-}
-const notify = new Notify(process.env.NOTIFY_API_KEY);
-
+const notify = new Notify("<api-key>");
 
 // Test 1: Basic email
+async function testEmail() {
+  const testEmail = await notify.sendTestEmail({
+    to: "example@example.com",
+    subject: "Hello",
+    name: "John Doe",
+    message: "Testing send email.",
+  });
 
-notify.sendTestEmail({
-  to: "example@example.com",
-  subject: "Hello",
-  name: "John Doe",
-  message: "Testing send email.",
-});
+  console.log("testEmail", testEmail);
+}
+testEmail();
 
 // // Test 2: Email using template
-notify.sendTestEmailFromTemplate({
-  to: "jane@example.com",
-  from: "Notify <noreply@notify.cx>",
-  templateId: process.env.EXAMPLE_TEMPLATE_ID,
-  variables: {
-    name: "Jane Doe",
-    company: "Example Inc.",
-  },
+async function testEmailFromTemplate() {
+  const testEmailFromTemplate = await notify.sendTestEmailFromTemplate({
+    to: "jane@example.com",
+    from: "Notify <noreply@notify.cx>",
+    templateId: "<template-id>",
+    variables: {
+      name: "Jane Doe",
+      company: "Example Inc.",
+    },
+  });
 
-});
+  console.log("testEmailFromTemplate", testEmailFromTemplate);
+}
+testEmailFromTemplate();
 
 // // Test 3: Chained basic email
-new Notify(process.env.NOTIFY_API_KEY).sendTestEmail({
-  to: "example@example.com",
-  subject: "Hello",
-  name: "John Doe",
-  message: "Testing send email.",
-});
+async function testChainedEmail() {
+  const testChainedEmail = await new Notify("<api-key>").sendTestEmail({
+    to: "example@example.com",
+    subject: "Hello",
+    name: "John Doe",
+    message: "Testing send email.",
+  });
 
+  console.log("testChainedEmail", testChainedEmail);
+}
+testChainedEmail();
 
 // // Test 4: Chained template email
-new Notify(process.env.NOTIFY_API_KEY).sendTestEmailFromTemplate({
-  to: "jane@example.com",
-  from: "Notify <noreply@notify.cx>",
-  templateId: process.env.EXAMPLE_TEMPLATE_ID,
-  variables: {
-    name: "Jane Doe",
-    company: "Example Inc.",
-  },
-});
+async function testChainedTemplateEmail() {
+  const testChainedTemplateEmail = await new Notify(
+    "<api-key>"
+  ).sendTestEmailFromTemplate({
+    to: "jane@example.com",
+    from: "Notify <noreply@notify.cx>",
+    templateId: "<template-id>",
+    variables: {
+      name: "Jane Doe",
+      company: "Example Inc.",
+    },
+  });
+
+  console.log("testChainedTemplateEmail", testChainedTemplateEmail);
+}
+testChainedTemplateEmail();

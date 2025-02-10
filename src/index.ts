@@ -1,3 +1,5 @@
+// TODO, ensure every function returns { data, error }
+
 // src/index.ts
 
 interface SendEmailParams {
@@ -14,7 +16,7 @@ interface SendEmailFromTemplateParams {
   variables?: Record<string, string>;
 }
 
-class Notify {
+export class Notify {
   public readonly apiKey: string;
   public readonly apiUrl: string;
 
@@ -26,76 +28,67 @@ class Notify {
     this.apiUrl = apiUrl;
   }
 
-  async sendEmail(params: SendEmailParams): Promise<void> {
-    const headers = {
-      "Content-Type": "application/json",
-      "x-api-key": this.apiKey,
-    };
+  async sendEmail(
+    params: SendEmailParams
+  ): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await fetch(`${this.apiUrl}/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": this.apiKey,
+        },
+        body: JSON.stringify(params),
+      });
 
-    const response = await fetch(`${this.apiUrl}/send-email`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(params),
-    });
+      const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Failed to send email: ${response.statusText}`);
+      if (!response.ok) {
+        throw new Error(data.message || response.statusText);
+      }
+
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(`Failed to send email: ${error.message}`);
+      }
+      throw new Error("Failed to send email: An unknown error occurred");
     }
-    console.log("Email sent successfully:", await response.json());
   }
 
-  async sendTestEmail(params: SendEmailParams): Promise<void> {
-    const headers = {
-      "Content-Type": "application/json",
-      "x-api-key": this.apiKey,
-    };
+  async sendTestEmail(
+    params: SendEmailParams
+  ): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await fetch(`${this.apiUrl}/test/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": this.apiKey,
+        },
+        body: JSON.stringify(params),
+      });
 
-    const response = await fetch(`${this.apiUrl}/test/send-email`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(params),
-    });
+      const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Failed to send email: ${response.statusText}`);
+      if (!response.ok) {
+        throw new Error(data.message || response.statusText);
+      }
+
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(`Failed to send test email: ${error.message}`);
+      }
+      throw new Error("Failed to send test email: An unknown error occurred");
     }
-    console.log("Email sent successfully:", await response.json());
   }
 
   async sendEmailFromTemplate(
     params: SendEmailFromTemplateParams
-  ): Promise<void> {
-    const response = await fetch(`${this.apiUrl}/send-email-from-template`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": this.apiKey,
-      },
-      body: JSON.stringify({
-        templateId: params.templateId,
-        from: params?.from,
-        to: params.to,
-        variables: params?.variables,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to send email from template: ${response.statusText}`
-      );
-    }
-    console.log(
-      "Email from template sent successfully:",
-      await response.json()
-    );
-  }
-
-  async sendTestEmailFromTemplate(
-    params: SendEmailFromTemplateParams
-  ): Promise<void> {
-    const response = await fetch(
-      `${this.apiUrl}/test/send-email-from-template`,
-      {
+  ): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await fetch(`${this.apiUrl}/send-email-from-template`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,20 +100,64 @@ class Notify {
           to: params.to,
           variables: params?.variables,
         }),
-      }
-    );
+      });
 
-    if (!response.ok) {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || response.statusText);
+      }
+
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(`Failed to send email from template: ${error.message}`);
+      }
       throw new Error(
-        `Failed to send email from template: ${response.statusText}`
+        "Failed to send email from template: An unknown error occurred"
       );
     }
-    console.log(
-      "Email from template sent successfully:",
-      await response.json()
-    );
+  }
+
+  async sendTestEmailFromTemplate(
+    params: SendEmailFromTemplateParams
+  ): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await fetch(
+        `${this.apiUrl}/test/send-email-from-template`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": this.apiKey,
+          },
+          body: JSON.stringify({
+            templateId: params.templateId,
+            from: params?.from,
+            to: params.to,
+            variables: params?.variables,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || response.statusText);
+      }
+
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(
+          `Failed to send test email from template: ${error.message}`
+        );
+      }
+      throw new Error(
+        "Failed to send test email from template: An unknown error occurred"
+      );
+    }
   }
 }
 
-// export default Notify;
-export { Notify }
+export default Notify;

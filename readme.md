@@ -21,7 +21,7 @@ const notify = new Notify("your-api-key");
 You can optionally specify a custom API URL during initialization:
 
 ```typescript
-const notify = new Notify("your-api-key", "https://api.notify.cx/v1");
+const notify = new Notify("your-api-key", "https://notify.cx/api");
 ```
 
 ## Getting Your API Key
@@ -150,10 +150,10 @@ try {
 
 ## License
 
-MIT
+This project is private and not open source yet.
 
 ## Author
 
 [Notify](https://notify.cx)
 
-For more information and detailed documentation, visit [notify.cx](https://notify.cx).
+For more information and detailed documentation, visit [notify.cx/docs](https://notify.cx/docs).
