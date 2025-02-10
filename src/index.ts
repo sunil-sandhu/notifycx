@@ -122,4 +122,5 @@ class Notify {
   }
 }
 
-export default Notify;
+// export default Notify;
+export { Notify }
